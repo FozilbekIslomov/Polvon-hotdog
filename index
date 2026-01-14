@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polvon Hotdog - Eng Mazali Hotdog!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        :root {
+            --primary-color: #c62828;
+            --secondary-color: #ff9800;
+            --dark-color: #333333;
+            --light-color: #f5f5f5;
+            --gray-color: #757575;
+            --success-color: #4caf50;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark-color);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            color: var(--primary-color);
+            font-size: 28px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .logo-text span {
+            color: var(--secondary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 17px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .cta-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+        
+        .cta-button:hover {
+            background-color: #a71e1e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1965&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 180px 20px 100px;
+            margin-top: 70px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #f0f0f0;
+        }
+        
+        /* Menu Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-top: 80px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70%;
+            height: 3px;
+            background-color: var(--secondary-color);
+            bottom: -10px;
+            left: 15%;
+        }
+        
+        .section-title p {
+            color: var(--gray-color);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .menu-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .menu-item-content {
+            padding: 20px;
+        }
+        
+        .menu-item-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .menu-item-title h3 {
+            font-size: 22px;
+            color: var(--dark-color);
+        }
+        
+        .price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 20px;
+        }
+        
+        .menu-item-content p {
+            color: var(--gray-color);
+            margin-bottom: 15px;
+        }
+        
+        .order-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        
+        .order-btn:hover {
+            background-color: #e68900;
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--light-color);
+            padding: 80px 0;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--gray-color);
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .contact-item {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contact-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .contact-item h3 {
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary-color);
+        }
+        
+        .footer-about p {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links h3, .footer-social h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #444;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #bbb;
+            font-size: 14px;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            animation: modalFade 0.3s;
+        }
+        
+        @keyframes modalFade {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray-color);
+        }
+        
+        .modal h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .submit-order {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-order:hover {
+            background-color: #a71e1e;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 150px 20px 80px;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .section-title h2 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon"><i class="fas fa-hotdog"></i></div>
+                    <div class="logo-text">Polvon<span>Hotdog</span></div>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Bosh Sahifa</a></li>
+                    <li><a href="#menu">Menyu</a></li>
+                    <li><a href="#about">Biz Haqimizda</a></li>
+                    <li><a href="#contact">Bog'lanish</a></li>
+                    <li><button class="cta-button" id="orderNowBtn">Buyurtma Berish</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Eng Mazali Hotdog Faqat Polvon Hotdog-da!</h1>
+            <p>Tabiiy mahsulotlar, ajoyib retsept va tez yetkazib berish xizmati. Shahringizdagi eng yaxshi hotdogni tatib ko'ring!</p>
+            <button class="cta-button" id="heroOrderBtn">Buyurtma Berish</button>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Menyumiz</h2>
+                <p>Har biriga alohida e'tibor qaratilgan, maxsus tayyorlangan hotdoglarimizni tatib ko'ring</p>
+            </div>
+            
+            <div class="menu-grid">
+                <!-- Menu items will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Polvon Hotdog Haqida</h3>
+                    <p>10 yildan ortiq tajribaga ega bo'lgan Polvon Hotdog, mijozlarimizga eng sifatli va mazali hotdoglarni taqdim etish uchun doim yangi retseptlar va usullarni qo'llaymiz.</p>
+                    <p>Bizning mahsulotlarimizda faqat tabiiy va yuqori sifatli ingredientlar ishlatiladi. Har bir hotdog maxsus pishirilgan non, ajoyib souslar va yangi sabzavotlar bilan tayyorlanadi.</p>
+                    <p>Bizning maqsadimiz - har bir mijozimizning kundalik taomiga mazza va quvnoqlik qo'shish. Polvon Hotdog - bu nafaqat tez ovqat, balki haqiqiy dam olish va zavqlanish manbai!</p>
+                    <button class="cta-button" id="aboutOrderBtn">Buyurtma Berish</button>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1617196035154-1e7e6e28b0db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Polvon Hotdog jamoadoshlari">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Biz Bilan Bog'laning</h2>
+                <p>Har qanday savol yoki taklifingiz bo'lsa, biz bilan bog'lanishingiz mumkin</p>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Manzil</h3>
+                    <p>Toshkent shahar, Chilonzor tumani, 9-mavze, 45-uy</p>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Telefon</h3>
+                    <p>+998 90 123 45 67</p>
+                    <p>+998 71 234 56 78</p>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Ish vaqti</h3>
+                    <p>Har kuni: 9:00 - 23:00</p>
+                    <p>Dam olish kunlari: 10:00 - 00:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">Polvon<span>Hotdog</span></div>
+                    <p>Shahringizdagi eng mazali va tez tayyorlanadigan hotdoglar. Biz bilan aloqa qiling va buyurtma bering!</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Tez havolalar</h3>
+                    <ul>
+                        <li><a href="#home">Bosh Sahifa</a></li>
+                        <li><a href="#menu">Menyu</a></li>
+                        <li><a href="#about">Biz Haqimizda</a></li>
+                        <li><a href="#contact">Bog'lanish</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>Ijtimoiy tarmoqlar</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Polvon Hotdog. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Order Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h3>Buyurtma Berish</h3>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="product">Mahsulot</label>
+                    <select id="product" name="product" required>
+                        <option value="">Mahsulotni tanlang</option>
+                        <option value="classic">Klassik Hotdog - 18,000 so'm</option>
+                        <option value="cheese">Pishloqli Hotdog - 22,000 so'm</option>
+                        <option value="spicy">Achchiq Hotdog - 20,000 so'm</option>
+                        <option value="double">Ikki Bavarali Hotdog - 25,000 so'm</option>
+                        <option value="vegan">Vegan Hotdog - 19,000 so'm</option>
+                        <option value="special">Maxsus Polvon Hotdog - 28,000 so'm</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="name">Ismingiz</label>
+                    <input type="text" id="name" name="name" required placeholder="Ismingizni kiriting">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Telefon raqamingiz</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+998 90 123 45 67">
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Yetkazib berish manzili</label>
+                    <textarea id="address" name="address" required placeholder="Manzilingizni batafsil kiriting"></textarea>
+                </div>
+                
+                <button type="submit" class="submit-order">Buyurtmani tasdiqlash</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div style="text-align: center; padding: 30px 20px;">
+                <div style="font-size: 60px; color: var(--success-color); margin-bottom: 20px;">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 style="color: var(--success-color); margin-bottom: 15px;">Buyurtmangiz qabul qilindi!</h3>
+                <p style="color: var(--gray-color); margin-bottom: 25px;">Tez orada operatorlarimiz siz bilan bog'lanadi. Polvon Hotdog tanlaganingiz uchun rahmat!</p>
+                <button class="cta-button" id="closeSuccessModal">Yopish</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Menu Data
+        const menuItems = [
+            {
+                id: 1,
+                name: "Klassik Hotdog",
+                description: "Tabiiy sosiska, yangi non, ketçap, gorchitsa va marinadlangan bodring",
+                price: "18,000 so'm",
+                image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1998&q=80"
+            },
+            {
+                id: 2,
+                name: "Pishloqli Hotdog",
+                description: "Klassik hotdog ustiga erigan pishloq va maxsus pishloq sousi",
+                price: "22,000 so'm",
+                image: "https://images.unsplash.com/photo-1619740455993-9e612b1af08a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 3,
+                name: "Achchiq Hotdog",
+                description: "Achchiq sosiska, jalapeno, achchiq sous va qizil qalampir",
+                price: "20,000 so'm",
+                image: "https://images.unsplash.com/photo-1615870216519-2f9fa575fa5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2032&q=80"
+            },
+            {
+                id: 4,
+                name: "Ikki Bavarali Hotdog",
+                description: "Ikkita sosiska, qo'shimcha souslar va ko'p miqdorda sabzavotlar",
+                price: "25,000 so'm",
+                image: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80"
+            },
+            {
+                id: 5,
+                name: "Vegan Hotdog",
+                description: "Vegan sosiska, yangi sabzavotlar va maxsus vegan souslar",
+                price: "19,000 so'm",
+                image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1981&q=80"
+            },
+            {
+                id: 6,
+                name: "Maxsus Polvon Hotdog",
+                description: "Bizning maxsus retsept: go'shtli sosiska, maxsus 10 xil sous aralashmasi",
+                price: "28,000 so'm",
+                image: "https://images.unsplash.com/photo-1550317138-10000687a72b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2020&q=80"
+            }
+        ];
+        
+        // Populate Menu
+        const menuGrid = document.querySelector('.menu-grid');
+        
+        menuItems.forEach(item => {
+            const menuItem = document.createElement('div');
+            menuItem.className = 'menu-item';
+            menuItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <div class="menu-item-content">
+                    <div class="menu-item-title">
+                        <h3>${item.name}</h3>
+                        <span class="price">${item.price}</span>
+                    </div>
+                    <p>${item.description}</p>
+                    <button class="order-btn" data-id="${item.id}" data-name="${item.name}" data-price="${item.price}">Buyurtma Berish</button>
+                </div>
+            `;
+            menuGrid.appendChild(menuItem);
+        });
+        
+        // Modal Elements
+        const orderModal = document.getElementById('orderModal');
+        const successModal = document.getElementById('successModal');
+        const closeModal = document.getElementById('closeModal');
+        const closeSuccessModal = document.getElementById('closeSuccessModal');
+        const orderForm = document.getElementById('orderForm');
+        const orderNowBtn = document.getElementById('orderNowBtn');
+        const heroOrderBtn = document.getElementById('heroOrderBtn');
+        const aboutOrderBtn = document.getElementById('aboutOrderBtn');
+        const productSelect = document.getElementById('product');
+        
+        // Open Order Modal
+        function openOrderModal(productName = '', productPrice = '') {
+            if (productName && productPrice) {
+                productSelect.value = productName.toLowerCase().replace(' ', '');
+            }
+            orderModal.style.display = 'flex';
+        }
+        
+        // Close Modals
+        function closeOrderModal() {
+            orderModal.style.display = 'none';
+        }
+        
+        function closeSuccessModalFunc() {
+            successModal.style.display = 'none';
+        }
+        
+        // Event Listeners for Opening Modal
+        orderNowBtn.addEventListener('click', () => openOrderModal());
+        heroOrderBtn.addEventListener('click', () => openOrderModal());
+        aboutOrderBtn.addEventListener('click', () => openOrderModal());
+        
+        // Event Listeners for Order Buttons on Menu Items
+        document.querySelectorAll('.order-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const productName = button.getAttribute('data-name');
+                const productPrice = button.getAttribute('data-price');
+                openOrderModal(productName, productPrice);
+            });
+        });
+        
+        // Close Modal Event Listeners
+        closeModal.addEventListener('click', closeOrderModal);
+        closeSuccessModal.addEventListener('click', closeSuccessModalFunc);
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === orderModal) {
+                closeOrderModal();
+            }
+            if (e.target === successModal) {
+                closeSuccessModalFunc();
+            }
+        });
+        
+        // Form Submission
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const product = document.getElementById('product').value;
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            
+            // In a real application, you would send this data to a server
+            console.log('Buyurtma ma\'lumotlari:', { product, name, phone, address });
+            
+            // Close order modal and show success modal
+            closeOrderModal();
+            successModal.style.display = 'flex';
+            
+            // Reset form
+            orderForm.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
